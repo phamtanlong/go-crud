@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package pb;
+
+service News {
+    rpc Create(CreateRequest) returns (CreateResponse);
+	rpc Update(UpdateRequest) returns (UpdateResponse);
+	rpc Delete(DeleteRequest) returns (DeleteResponse);
+	rpc Read(ReadRequest) returns (ReadResponse);
+}
+
+//
+message CreateRequest {
+    uint32 userId = 1;
+
+    string title = 2;
+    string thumbnail = 3;
+    string content = 4;
+    string tags = 5;
+}
+
+message CreateResponse {
+    uint32 id = 1;
+    string error = 2;
+}
+
+//
+message UpdateRequest {
+    uint32 userId = 1;
+    uint32 id = 2;
+
+    string title = 3;
+    string thumbnail = 4;
+    string content = 5;
+    string tags = 6;
+}
+
+message UpdateResponse {
+    string error = 1;
+}
+
+//
+message DeleteRequest {
+    uint32 userId = 1;
+    uint32 id = 2;
+}
+
+message DeleteResponse {
+    string error = 1;
+}
+
+//
+message ReadRequest {
+    uint32 id = 1;
+}
+
+message ReadResponse {
+    uint32 id = 2;
+
+    string title = 3;
+    string thumbnail = 4;
+    string content = 5;
+    string tags = 6;
+}
